@@ -1,0 +1,141 @@
+html {
+  background: linear-gradient(#43cea2, #185a9d);
+  height: 100%;
+}
+.grid-container {
+  margin: auto;
+  margin-top: 10vh;
+  display: grid;
+  height: 750px;
+  width: 500px;
+  grid-template-columns: auto auto auto auto;
+  grid-template-rows: 2fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 10px 10px;
+  grid-template-areas: 
+    "display display display display" 
+    "clr plus-min percent div" 
+    "b7 b8 b9 multi" 
+    "b4 b5 b6 subtract" 
+    "b1 b2 b3 add" 
+    "b0 b0 dec equals"; 
+}
+
+.display {
+  grid-area: display;
+  background: rgb(0, 0, 0, 0.6);
+  grid-column-start: 1;
+  grid-column-end: 5;
+  text-align: right;
+  border-radius: 3px;
+  padding: 20px;
+  font-size: 3em;
+  color: white;
+}
+
+.button {
+  height: 100px;
+  border-radius: 2px;
+  text-align: center;
+  font-size: 3em;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-primary {
+  background: rgb(0, 0, 0, 0.25);
+}
+
+.button-secondary {
+  background: rgb(0, 0, 0, 0.4);
+}
+
+.button-operator {
+  background: rgb(0, 0, 0, 0.6);
+}
+
+#clear {
+  grid-area: clr;
+}
+
+#plus-min {
+  grid-area: plus-min;
+}
+
+#percent {
+  grid-area: percent;
+}
+
+#one {
+  grid-area: b1;
+}
+
+#two {
+  grid-area: b2;
+}
+
+#three {
+  grid-area: b3;
+}
+
+#four {
+  grid-area: b4;
+}
+
+#five {
+  grid-area: b5;
+}
+
+#six {
+  grid-area: b6;
+}
+
+#seven {
+  grid-area: b7;
+}
+
+#eight {
+  grid-area: b8;
+}
+
+#nine {
+  grid-area: b9;
+}
+
+#zero {
+  grid-area: b0;
+  height: 100px;
+  border-radius: 2px;
+  text-align: center;
+  font-size: 3em;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding-left: 45px;
+}
+
+#divide {
+  grid-area: div;
+}
+
+#multiply {
+  grid-area: multi;
+}
+
+#subtract {
+  grid-area: subtract;
+}
+
+#add {
+  grid-area: add;
+}
+
+#decimal {
+  grid-area: dec;
+}
+
+#equals {
+  grid-area: equals;
+}
