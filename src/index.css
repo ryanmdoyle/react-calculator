@@ -1,7 +1,9 @@
 html {
   background: linear-gradient(#43cea2, #185a9d);
   height: 100%;
+  font-family: 'Lato', sans-serif;
 }
+
 .grid-container {
   margin: auto;
   margin-top: 10vh;
@@ -13,7 +15,7 @@ html {
   grid-gap: 10px 10px;
   grid-template-areas: 
     "display display display display" 
-    "clr plus-min percent div" 
+    "clr clr clr div" 
     "b7 b8 b9 multi" 
     "b4 b5 b6 subtract" 
     "b1 b2 b3 add" 
@@ -28,8 +30,22 @@ html {
   text-align: right;
   border-radius: 3px;
   padding: 20px;
-  font-size: 3em;
   color: white;
+  border: 1px solid rgb(0, 0, 0, 0.25);
+}
+
+.display h1 {
+    font-size: 3em;
+    line-height: 80%
+}
+
+.display p {
+    font-size: 1.5em;
+    line-height: 100%
+}
+
+button:hover {
+  border: 1px solid #ffffff;
 }
 
 .button {
@@ -45,26 +61,21 @@ html {
 
 .button-primary {
   background: rgb(0, 0, 0, 0.25);
+  border: 1px solid rgb(0, 0, 0, 0.25);
 }
 
 .button-secondary {
   background: rgb(0, 0, 0, 0.4);
+  border: 1px solid rgb(0, 0, 0, 0.25);
 }
 
 .button-operator {
   background: rgb(0, 0, 0, 0.6);
+  border: 1px solid rgb(0, 0, 0, 0.25);
 }
 
 #clear {
   grid-area: clr;
-}
-
-#plus-min {
-  grid-area: plus-min;
-}
-
-#percent {
-  grid-area: percent;
 }
 
 #one {

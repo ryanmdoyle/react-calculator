@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 // import './App.css';
 
+const Button = (props) => <button id={props.id} className={props.class} value={props.value} onClick={props.handleClick}>{props.value}</button>
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -8,14 +10,27 @@ class App extends Component {
       resultDisplay: "",
       entryDisplay: "",
     }
+    this.handleInput = this.handleInput.bind(this);
   }
 
-  handleInput() {
-    //manage state to entryDisplay when entering keys
+  handleInput(value) {
+    console.log(value);
   }
 
-  duplicateOperation() {
-    //check for second entry of operation and replace previous if neccesary
+  duplicateOperation(entry) {
+    const input = entry.split("")  
+    const last = input[input.length-1];
+    const secToLast = input[input.length-2];
+      if (last === "+" || last === "-" || last === "/" || last === "*") {
+        if (secToLast === "+" || secToLast === "-" || secToLast === "/" || secToLast === "*") {
+          const removed = input.splice(-2, 1); console.log(removed);
+          return input.join("");
+        } else {
+          return entry;
+        }
+      } else {
+        return entry;
+      }
   }
 
   calculate() {
@@ -36,27 +51,28 @@ class App extends Component {
   
   render() {
     return (
-      <div class="grid-container">
-        <div class="display">display</div>
-        <div id="clear" class="button button-secondary">ac</div>
-        <div id="plus-min" class="button button-secondary">+/-</div>
-        <div id="percent" class="button button-secondary">%</div>
-        <div id="one" class="button button-primary">1</div>
-        <div id="two" class="button button-primary">2</div>
-        <div id="three" class="button button-primary">3</div>
-        <div id="four" class="button button-primary">4</div>
-        <div id="five" class="button button-primary">5</div>
-        <div id="six" class="button button-primary">6</div>
-        <div id="seven" class="button button-primary">7</div>
-        <div id="eight" class="button button-primary">8</div>
-        <div id="nine" class="button button-primary">9</div>
-        <div id="zero" class="button-primary">0</div>
-        <div id="divide" class="button button-operator">/</div>
-        <div id="multiply" class="button button-operator">*</div>
-        <div id="subtract" class="button button-operator">-</div>
-        <div id="add" class="button button-operator">+</div>
-        <div id="decimal" class="button button-primary">.</div>
-        <div id="equals" class="button button-operator">=</div>
+      <div className="grid-container">
+        <div className="display">
+          <h1>Display</h1>
+          <p>entry</p>
+        </div>
+        <Button id="clear" class={`button button-secondary`} value="ac" handleClick={() => this.handleInput("clear")}/>
+        <Button id="one" class="button button-primary" value={1} handleClick={() => this.handleInput(1)}/>
+        <Button id="two" class="button button-primary" value={2} handleClick={() => this.handleInput(2)}/>
+        <Button id="three" class="button button-primary" value={3} handleClick={() => this.handleInput(3)}/>
+        <Button id="four" class="button button-primary" value={4} handleClick={() => this.handleInput(4)}/>
+        <Button id="five" class="button button-primary" value={5} handleClick={() => this.handleInput(5)}/>
+        <Button id="six" class="button button-primary" value={6} handleClick={() => this.handleInput(6)}/>
+        <Button id="seven" class="button button-primary" value={7} handleClick={() => this.handleInput(7)}/>
+        <Button id="eight" class="button button-primary" value={8} handleClick={() => this.handleInput(8)}/>
+        <Button id="nine" class="button button-primary" value={9} handleClick={() => this.handleInput(9)}/>
+        <Button id="zero" class="button button-primary" value={0} handleClick={() => this.handleInput(0)}/>
+        <Button id="add" class="button button-primary" value={"+"} handleClick={() => this.handleInput("+")}/>
+        <Button id="subtract" class="button button-primary" value={"-"} handleClick={() => this.handleInput("-")}/>
+        <Button id="multiply" class="button button-primary" value={"*"} handleClick={() => this.handleInput("*")}/>
+        <Button id="divide" class="button button-primary" value={"/"} handleClick={() => this.handleInput("/")}/>
+        <Button id="decimal" class="button button-primary" value={"."} handleClick={() => this.handleInput(".")}/>
+        <Button id="equals" class="button button-primary" value={"="} handleClick={() => this.handleInput("=")}/>
       </div>
     );
   }
