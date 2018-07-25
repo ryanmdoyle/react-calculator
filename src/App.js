@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 const Button = (props) => <button id={props.id} className={props.class} value={props.value} onClick={props.handleClick}>{props.value}</button>
 
-class App extends Component {
+class App extends Component { //look to replace eval() with jexl
   constructor(props) {
     super(props);
     this.state = {
@@ -14,7 +14,16 @@ class App extends Component {
   }
 
   handleInput(value) {
-    console.log(value);
+    if (this.state.entryDisplay === "") {
+      this.setState({
+        entryDisplay: value
+      })
+    } else {
+      this.setState({
+        entryDisplay: this.state.entryDisplay + value //change to concat the string at the end (currently it adds the value)
+      })
+    }
+    console.log(this.state.entryDisplay);
   }
 
   duplicateOperation(entry) {
@@ -53,7 +62,7 @@ class App extends Component {
     return (
       <div className="grid-container">
         <div className="display">
-          <h1>Display</h1>
+          <h1>{this.state.entryDisplay}</h1>
           <p>entry</p>
         </div>
         <Button id="clear" class={`button button-secondary`} value="ac" handleClick={() => this.handleInput("clear")}/>
