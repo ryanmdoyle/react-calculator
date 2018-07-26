@@ -9,6 +9,7 @@ class App extends Component { //look to replace eval() with jexl
     this.state = {
       resultDisplay: "0",
       expressionDisplay: "0",
+      currentEntry: "0"
     }
     
     this.handleInput = this.handleInput.bind(this);
@@ -19,17 +20,38 @@ class App extends Component { //look to replace eval() with jexl
 
   handleInput(value) {
 
-    if (this.state.expressionDisplay === "0") {
-      this.setState({
-        expressionDisplay: value
-      })
-    } else {
-      this.setState({
-        expressionDisplay: this.duplicateOperation(this.state.expressionDisplay.concat(value))  //change to concat the string at the end (currently it adds the value)
+    const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+    const operators = [".","*","/","+","-"]
 
-      })
+    if (numbers.includes(value)) { //constols entry of number buttons
+      if (this.state.expressionDisplay === "0") { // Sets first value & prevents first value from being 0.
+        this.setState({
+          expressionDisplay: value,
+          currentEntry: value
+        })
+      } else { // Adds additional values on to expression string once there is an initial value
+        this.setState({
+          expressionDisplay: this.state.expressionDisplay.concat(value),  //change to concat the string at the end (currently it adds the value)
+          currentEntry: this.state.currentEntry.concat(value)
+        })
+      }
+    } else if (operators.includes(value)) { //controls enttry of operators
+      
+      if (value === "." && !this.state.currentEntry.includes(".")) { //handle entry of decimals
+        this.setState({
+          expressionDisplay: this.state.expressionDisplay.concat(value),  //change to concat the string at the end (currently it adds the value)
+          currentEntry: this.state.currentEntry.concat(value)
+        })
+      } else if (value !== ".") {
+
+        if (this.state.currentEntry.length > 1 || this.state.currentEntry !== "0") {
+          this.setState({
+            expressionDisplay: this.duplicateOperation(this.state.expressionDisplay.concat(value)),  //change to concat the string at the end (currently it adds the value)
+            currentEntry: "operator"
+          })
+        }
+      }
     }
-    console.log(this.state.expressionDisplay)
   }
 
   duplicateOperation(entry) {
@@ -49,10 +71,18 @@ class App extends Component { //look to replace eval() with jexl
   }
 
   calculate() {
-    //const result = eval(this.state.expressionDisplay)
+    
+    let result = "";
+
+    if (this.state.currentEntry === "operator") {
+      result = this.state.expressionDisplay.substring(0, this.state.expressionDisplay.length-1)
+    }     
+    
     this.setState({
-      resultDisplay: eval(this.state.expressionDisplay).toPrecision(10),
-      expressionDisplay: eval(this.state.expressionDisplay).toPrecision(10)
+      // eslint-disable-next-line
+      resultDisplay: eval(result).toString(), // toString ensures future operation are possible (allows concatenating additonal strings)
+      // eslint-disable-next-line
+      expressionDisplay: eval(result).toString()//  <-- to make just calculating work with the error ending with a operator just replace result with expressionDisplay
     })
   }
 
