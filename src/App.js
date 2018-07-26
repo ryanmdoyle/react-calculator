@@ -35,7 +35,7 @@ class App extends Component { //look to replace eval() with jexl
           currentEntry: this.state.currentEntry.concat(value)
         })
       }
-    } else if (operators.includes(value)) { //controls enttry of operators
+    } else if (operators.includes(value)) { //controls entry of operators
       
       if (value === "." && !this.state.currentEntry.includes(".")) { //handle entry of decimals
         this.setState({
@@ -46,7 +46,7 @@ class App extends Component { //look to replace eval() with jexl
 
         if (this.state.currentEntry.length > 1 || this.state.currentEntry !== "0") {
           this.setState({
-            expressionDisplay: this.duplicateOperation(this.state.expressionDisplay.concat(value)),  //change to concat the string at the end (currently it adds the value)
+            expressionDisplay: this.duplicateOperation(this.state.expressionDisplay.concat(value)),
             currentEntry: "operator"
           })
         }
@@ -77,33 +77,16 @@ class App extends Component { //look to replace eval() with jexl
         // eslint-disable-next-line
         resultDisplay: eval(this.state.expressionDisplay.substring(0, this.state.expressionDisplay.length-1)).toString(), // toString ensures future operation are possible (allows concatenating additonal strings)
         // eslint-disable-next-line
-        expressionDisplay: eval(this.state.expressionDisplay.substring(0, this.state.expressionDisplay.length-1)).toString()//  <-- to make just calculating work with the error ending with a operator just replace result with expressionDisplay
+        expressionDisplay: eval(this.state.expressionDisplay.substring(0, this.state.expressionDisplay.length-1)).toString()
       })
     } else {
       this.setState({
         // eslint-disable-next-line
         resultDisplay: eval(this.state.expressionDisplay).toString(), // toString ensures future operation are possible (allows concatenating additonal strings)
         // eslint-disable-next-line
-        expressionDisplay: eval(this.state.expressionDisplay).toString()//  <-- to make just calculating work with the error ending with a operator just replace result with expressionDisplay
+        expressionDisplay: eval(this.state.expressionDisplay).toString()
       })
     }
-  
-
-
-
-   /////////////////////////OLD CALCULATE STUFF
-    // let result = "";
-
-    // if (this.state.currentEntry === "operator") {
-    //   result = this.state.expressionDisplay.substring(0, this.state.expressionDisplay.length-1)
-    // }     
-    // // try copy pasting the below things and making a version withint he operator if statement with the whole result ="......." thing in place of result
-    // this.setState({
-    //   // eslint-disable-next-line
-    //   resultDisplay: eval(result).toString(), // toString ensures future operation are possible (allows concatenating additonal strings)
-    //   // eslint-disable-next-line
-    //   expressionDisplay: eval(result).toString()//  <-- to make just calculating work with the error ending with a operator just replace result with expressionDisplay
-    // })
   }
 
   clear() {
