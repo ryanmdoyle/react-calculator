@@ -77,7 +77,7 @@ class App extends Component { //look to replace eval() with jexl
     if (this.state.currentEntry === "operator") {
       result = this.state.expressionDisplay.substring(0, this.state.expressionDisplay.length-1)
     }     
-    
+    // try copy pasting the below things and making a version withint he operator if statement with the whole result ="......." thing in place of result
     this.setState({
       // eslint-disable-next-line
       resultDisplay: eval(result).toString(), // toString ensures future operation are possible (allows concatenating additonal strings)
