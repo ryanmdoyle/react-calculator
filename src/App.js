@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import './App.css';
 
 const Button = (props) => <button id={props.id} className={props.class} value={props.value} onClick={props.handleClick}>{props.value}</button>
 
