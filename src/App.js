@@ -22,7 +22,7 @@ class App extends Component { //look to replace eval() with jexl
     const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
     const operators = [".","*","/","+","-"]
 
-    if (numbers.includes(value)) { //constols entry of number buttons
+    if (numbers.includes(value) && this.state.expressionDisplay.length <= 19) { //constols entry of number buttons
       if (this.state.expressionDisplay === "0") { // Sets first value & prevents first value from being 0.
         this.setState({
           expressionDisplay: value,
